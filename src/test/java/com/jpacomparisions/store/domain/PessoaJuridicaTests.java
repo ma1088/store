@@ -15,29 +15,29 @@ public class PessoaJuridicaTests {
     @Test
     void buildPessoaJuridica() {
         String cnpj = "222.333.444-55";
-        PessoaJuridica pf = PessoaJuridica.builder().cnpj(cnpj).build();
-        assertEquals(cnpj, pf.getCnpj());
+        PessoaJuridica pj = PessoaJuridica.builder().cnpj(cnpj).build();
+        assertEquals(cnpj, pj.getCnpj());
     }
 
     @Test
     void newEmptyPessoaJuridica() {
-        PessoaJuridica pf = new PessoaJuridica();
-        assertNull(pf.getCnpj());
+        PessoaJuridica pj = new PessoaJuridica();
+        assertNull(pj.getCnpj());
     }
 
     @Test
     void newPessoaJuridica() {
         String cnpj = "222.333.444-55";
-        PessoaJuridica pf = new PessoaJuridica(cnpj);
-        assertEquals(cnpj, pf.getCnpj());
+        PessoaJuridica pj = new PessoaJuridica(cnpj);
+        assertEquals(cnpj, pj.getCnpj());
     }
 
     @Test
-    void shouldChangePessoaJuridicaCpf() {
+    void shouldChangePessoaJuridicaCpj() {
         String cnpj = "222.333.444-55";
-        PessoaJuridica pf = new PessoaJuridica();
-        pf.setCnpj(cnpj);
-        assertEquals(cnpj, pf.getCnpj());
+        PessoaJuridica pj = new PessoaJuridica();
+        pj.setCnpj(cnpj);
+        assertEquals(cnpj, pj.getCnpj());
     }
 
     @Test
@@ -45,17 +45,17 @@ public class PessoaJuridicaTests {
         String cnpj = "222.333.444-55";
         String nome = "Alfredo Canis";
         LocalDate dataNascimento = LocalDate.of(2023, 02, 19);
-        PessoaJuridica pf = PessoaJuridica.builder()
+        PessoaJuridica pj = PessoaJuridica.builder()
                 .nome(nome)
                 .data(dataNascimento)
                 .cnpj(cnpj)
                 .build();
-        pf.setCnpj(cnpj + "!");
-        pf.setNome(nome + "!");
-        pf.setData(dataNascimento.plusDays(1L));
-        assertAll("grouped assertions of Pessoa Fisica",
-                () -> assertEquals(pf.getCnpj(), cnpj + "!"),
-                () -> assertEquals(pf.getNome(), nome + "!"),
-                () -> assertEquals(pf.getData(), dataNascimento.plusDays(1L)));
+        pj.setCnpj(cnpj + "!");
+        pj.setNome(nome + "!");
+        pj.setData(dataNascimento.plusDays(1L));
+        assertAll("grouped assertions of Pessoa Juridica",
+                () -> assertEquals(pj.getCnpj(), cnpj + "!"),
+                () -> assertEquals(pj.getNome(), nome + "!"),
+                () -> assertEquals(pj.getData(), dataNascimento.plusDays(1L)));
     }
 }
