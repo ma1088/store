@@ -28,7 +28,11 @@ public class PessoaFisicaTests {
     @Test
     void newPessoaFisica() {
         String cpf = "222.333.444-55";
-        PessoaFisica pf = new PessoaFisica(cpf);
+        Pessoa pessoa = Pessoa.builder()
+                .nome("Alfredo")
+                .data(LocalDate.of(2023, 2, 19))
+                .build();
+        PessoaFisica pf = new PessoaFisica(pessoa, cpf);
         assertEquals(cpf, pf.getCpf());
     }
 
@@ -46,16 +50,17 @@ public class PessoaFisicaTests {
         String nome = "Alfredo Canis";
         LocalDate dataNascimento = LocalDate.of(2023, 02, 19);
         PessoaFisica pf = PessoaFisica.builder()
-                .nome(nome)
-                .data(dataNascimento)
+                .pessoa(Pessoa.builder()
+                        .nome(nome)
+                        .data(dataNascimento).build())
                 .cpf(cpf)
                 .build();
         pf.setCpf(cpf + "!");
-        pf.setNome(nome + "!");
-        pf.setData(dataNascimento.plusDays(1L));
+        pf.getPessoa().setNome(nome + "!");
+        pf.getPessoa().setData(dataNascimento.plusDays(1L));
         assertAll("grouped assertions of Pessoa Fisica",
                 () -> assertEquals(pf.getCpf(), cpf + "!"),
-                () -> assertEquals(pf.getNome(), nome + "!"),
-                () -> assertEquals(pf.getData(), dataNascimento.plusDays(1L)));
+                () -> assertEquals(pf.getPessoa().getNome(), nome + "!"),
+                () -> assertEquals(pf.getPessoa().getData(), dataNascimento.plusDays(1L)));
     }
 }

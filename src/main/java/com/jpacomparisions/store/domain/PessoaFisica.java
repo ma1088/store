@@ -1,8 +1,10 @@
 package com.jpacomparisions.store.domain;
 
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -10,7 +12,10 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class PessoaFisica extends Pessoa {
+@Entity
+@Table
+public class PessoaFisica {
+    @EmbeddedId
+    private Pessoa pessoa;
     private String cpf;
 }
