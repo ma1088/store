@@ -3,6 +3,7 @@ package com.jpacomparisions.store.domain;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,6 +23,8 @@ public class Produto {
     @Id
     @GeneratedValue
     private UUID id;
+    @Column
     private String descricao;
+    @Column
     private LocalDate validade;
 }

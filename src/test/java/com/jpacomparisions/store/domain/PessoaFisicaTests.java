@@ -1,66 +1,56 @@
 package com.jpacomparisions.store.domain;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class PessoaFisicaTests {
     @Test
-    void buildPessoaFisica() {
-        String cpf = "222.333.444-55";
-        PessoaFisica pf = PessoaFisica.builder().cpf(cpf).build();
-        assertEquals(cpf, pf.getCpf());
-    }
+    public void buildPessoaFisicaTest() {
+        UUID id = UUID.randomUUID();
+        String nome = "Alfredo";
+        LocalDate dataNascimento = LocalDate.of(2023, 1, 1);
+        String cpf = "111.222.333-44";
 
-    @Test
-    void newEmptyPessoaFisica() {
-        PessoaFisica pf = new PessoaFisica();
-        assertNull(pf.getCpf());
-    }
-
-    @Test
-    void newPessoaFisica() {
-        String cpf = "222.333.444-55";
-        Pessoa pessoa = Pessoa.builder()
-                .nome("Alfredo")
-                .data(LocalDate.of(2023, 2, 19))
-                .build();
-        PessoaFisica pf = new PessoaFisica(pessoa, cpf);
-        assertEquals(cpf, pf.getCpf());
-    }
-
-    @Test
-    void shouldChangePessoaFisicaCpf() {
-        String cpf = "222.333.444-55";
-        PessoaFisica pf = new PessoaFisica();
-        pf.setCpf(cpf);
-        assertEquals(cpf, pf.getCpf());
-    }
-
-    @Test
-    void shouldChangeAttributesFromSuper() {
-        String cpf = "222.333.444-55";
-        String nome = "Alfredo Canis";
-        LocalDate dataNascimento = LocalDate.of(2023, 02, 19);
-        PessoaFisica pf = PessoaFisica.builder()
-                .pessoa(Pessoa.builder()
-                        .nome(nome)
-                        .data(dataNascimento).build())
+        Pessoa pessoa = PessoaFisica.builder()
+                .id(id)
+                .nome(nome)
+                .dataNacimento(dataNascimento)
                 .cpf(cpf)
                 .build();
-        pf.setCpf(cpf + "!");
-        pf.getPessoa().setNome(nome + "!");
-        pf.getPessoa().setData(dataNascimento.plusDays(1L));
-        assertAll("grouped assertions of Pessoa Fisica",
-                () -> assertEquals(pf.getCpf(), cpf + "!"),
-                () -> assertEquals(pf.getPessoa().getNome(), nome + "!"),
-                () -> assertEquals(pf.getPessoa().getData(), dataNascimento.plusDays(1L)));
+
+        assertNotNull(pessoa);
+        assertEquals(id, pessoa.getId());
+        assertEquals(nome, pessoa.getNome());
+        assertEquals(dataNascimento, pessoa.getDataNacimento());
+        assertEquals(cpf, ((PessoaFisica) pessoa).getCpf());
+    }
+
+    @Test
+    public void constructPessoaAllArgs() {
+        UUID id = UUID.randomUUID();
+        String nome = "Alfredo";
+        LocalDate dataNascimento = LocalDate.of(2023, 1, 1);
+        String cpf = "111.222.333-44";
+
+        Pessoa pessoa = new PessoaFisica(id, nome, dataNascimento, cpf);
+
+        assertNotNull(pessoa);
+        assertEquals(id, pessoa.getId());
+        assertEquals(nome, pessoa.getNome());
+        assertEquals(dataNascimento, pessoa.getDataNacimento());
+        assertEquals(cpf, ((PessoaFisica) pessoa).getCpf());
+    }
+
+    @Test
+    public void constructPessoaNoArgs() {
+
     }
 }
