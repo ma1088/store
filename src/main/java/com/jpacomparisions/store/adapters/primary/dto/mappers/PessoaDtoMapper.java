@@ -27,7 +27,7 @@ public interface PessoaDtoMapper {
 
     @Mapping(target = "dataNascimento", source = "dtNascimento")
     @Mapping(target = "cnpj", source = "documento")
-    public PessoaJuridica toPessoaJuridica (PessoaDto pessoaDto);
+    public PessoaJuridica toPessoaJuridica(PessoaDto pessoaDto);
 
     public default Pessoa getPessoa(PessoaDto pessoaDto) {
         if (pessoaDto.tipoPessoa().equals(TipoPessoaEnum.FISICA))

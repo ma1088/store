@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@DiscriminatorValue("J")
+@DiscriminatorValue("JURIDICA")
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder

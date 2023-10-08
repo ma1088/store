@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@DiscriminatorValue("F")
+@DiscriminatorValue("FISICA")
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor 
 @NoArgsConstructor
