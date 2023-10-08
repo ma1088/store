@@ -1,5 +1,10 @@
 package com.jpacomparisions.store.adapters.primary.dto;
 
-public record ProdutoDto() {
-    
+import java.time.LocalDate;
+
+public record ProdutoDto(
+    String id,
+    String descricao, 
+    LocalDate validade) {
+
 }

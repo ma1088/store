@@ -1,5 +1,11 @@
 package com.jpacomparisions.store.adapters.primary.dto;
 
-public record PedidoDto () {
+import java.time.LocalDateTime;
+
+public record PedidoDto (
+    String id,
+    LocalDateTime dataPedido,
+    PessoaDto pessoa
+) {
 
 }
