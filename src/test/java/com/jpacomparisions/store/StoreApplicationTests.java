@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.jpacomparisions.store.adapters.primary.PedidoController;
-import com.jpacomparisions.store.adapters.primary.PessoaController;
-import com.jpacomparisions.store.adapters.primary.ProdutoController;
+import com.jpacomparisions.store.adapters.primary.controllers.PedidoController;
+import com.jpacomparisions.store.adapters.primary.controllers.PessoaController;
+import com.jpacomparisions.store.adapters.primary.controllers.ProdutoController;
 import com.jpacomparisions.store.application.PedidoService;
 import com.jpacomparisions.store.application.PessoaService;
 import com.jpacomparisions.store.application.ProdutoService;
