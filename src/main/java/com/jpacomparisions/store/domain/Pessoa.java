@@ -30,5 +30,5 @@ public abstract class Pessoa {
     @Column
     private String nome;
     @Column
-    private LocalDate dataNacimento;
+    private LocalDate dataNascimento;
 }

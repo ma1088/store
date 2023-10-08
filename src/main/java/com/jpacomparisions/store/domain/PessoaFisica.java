@@ -20,7 +20,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 public class PessoaFisica extends Pessoa{
-    public PessoaFisica(UUID id, String nome, LocalDate dataNascimento, String cpf2) {
+    public PessoaFisica(UUID id, String nome, LocalDate dataNascimento, String cpf) {
+        super(id, nome, dataNascimento);
+        setCpf(cpf);
     }
 
     @Column
