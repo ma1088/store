@@ -22,8 +22,8 @@ public class ProdutoController {
   ProdutoDtoMapper mapper;
 
   @PostMapping
-  public ResponseEntity<ProdutoDto> novoProduto(@RequestBody ProdutoDto produto) {
+  public ResponseEntity<ProdutoDto> createProduto(@RequestBody ProdutoDto produto) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(mapper.fromProduto(service.novoProduto(mapper.toProduto(produto))));
+        .body(mapper.fromProduto(service.createProduto(mapper.toProduto(produto))));
   }
 }
