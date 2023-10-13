@@ -54,16 +54,19 @@ json coleção de saidaProduto
   "qtdProduto":""
 }
 
-
-tipos de model
-  annotations ou migrations
-tipos de repository
-  Consulta Nativa
-  Criteria API
-  JPQL (Java Persistence Query Language):
-  HQL (Hibernate Query Language):
-  Projeção
-tratamento de exceções
-logger
-sweggar
-junit - mokito
+### tipos de model
+#### annotations ou migrations
+### tipos de repository
+#### Consulta Nativa
+#### Criteria API
+#### JPQL (Java Persistence Query Language):
+#### HQL (Hibernate Query Language):
+#### Projeção
+### tratamento de exceções
+### logger
+### swagger
+- para Spring Boot 3.x, usar https://www.baeldung.com/spring-rest-openapi-documentation
+- a ideia é usar a biblioteca org.springdoc.springdoc-openapi-starter-webmvc-ui e acessar as URLs do Swagger diretamente:
+ - http://localhost:8080/v3/api-docs para description paths
+ - http://localhost:8080/swagger-ui/index.html para interface gráfica
+### junit - mokito
