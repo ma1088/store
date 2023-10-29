@@ -1,5 +1,6 @@
 package com.jpacomparisions.store.adapters.primary.dto.mappers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.mapstruct.Mapper;
@@ -17,7 +18,11 @@ import com.jpacomparisions.store.domain.PessoaJuridica;
 @Mapper(componentModel = "spring")
 public interface PedidoDtoMapper {
     @Mapping(target = "pessoa", source = "pessoa", qualifiedByName = "mapPessoaToPessoaDto")
+    @Mapping(target = "add", ignore = true)
+    @Mapping(target = "produtos", ignore = true)
     public PedidoDto fromPedido(Pedido pedido);
+
+    public List<PedidoDto> fromPedido(List<Pedido> pedido);
 
     @Mapping(target = "pessoa", source = "pessoa", qualifiedByName = "mapPessoaDtoToPessoa")
     public Pedido toPedido(PedidoDto pedidoDto);

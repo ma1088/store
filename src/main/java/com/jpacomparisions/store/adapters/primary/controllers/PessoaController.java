@@ -1,8 +1,11 @@
 package com.jpacomparisions.store.adapters.primary.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import com.jpacomparisions.store.adapters.primary.dto.PessoaDto;
 import com.jpacomparisions.store.adapters.primary.dto.mappers.PessoaDtoMapper;
 import com.jpacomparisions.store.adapters.primary.enums.TipoPessoaEnum;
 import com.jpacomparisions.store.application.PessoaService;
+import com.jpacomparisions.store.domain.Pessoa;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -26,6 +30,15 @@ public class PessoaController {
     if (pessoa.tipoPessoa().equals(TipoPessoaEnum.FISICA))
       return novaPessoaFisica(pessoa);
     return novaPessoaJuridica(pessoa);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<PessoaDto>> getPessoa(@RequestBody PessoaDto exemplo){
+    Pessoa exemploPessoa = new Pessoa() {};
+    if (exemplo.tipoPessoa().equals(TipoPessoaEnum.FISICA)) exemploPessoa =mapper.toPessoaFisica(exemplo);
+    if (exemplo.tipoPessoa().equals(TipoPessoaEnum.JURIDICA)) exemploPessoa = mapper.toPessoaJuridica(exemplo);
+    return ResponseEntity.ok().body(mapper.fromPessoa(service.recoverPessoa(exemploPessoa)));
+    
   }
 
   public ResponseEntity<PessoaDto> novaPessoaFisica(@RequestBody PessoaDto pessoa) {

@@ -1,5 +1,7 @@
 package com.jpacomparisions.store.adapters.primary.dto.mappers;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -21,6 +23,16 @@ public interface PessoaDtoMapper {
     @Mapping(target = "documento", source = "cnpj")
     public PessoaDto fromPessoaJuridica(PessoaJuridica pessoaJuridica);
 
+    @Mapping(target = "tipoPessoa", ignore = true)
+    @Mapping(target = "documento", ignore = true)
+    @Mapping(target = "dtNascimento", source = "dataNascimento")
+    public PessoaDto fromPessoa(Pessoa pessoa);
+
+    @Mapping(target = "tipoPessoa", ignore = true)
+    @Mapping(target = "documento", ignore = true)
+    @Mapping(target = "dtNascimento", source = "dataNascimento")
+    public List<PessoaDto> fromPessoa(List<Pessoa> recoverPessoa);
+
     @Mapping(target = "dataNascimento", source = "dtNascimento")
     @Mapping(target = "cpf", source = "documento")
     public PessoaFisica toPessoaFisica(PessoaDto pessoaDto);
@@ -28,10 +40,12 @@ public interface PessoaDtoMapper {
     @Mapping(target = "dataNascimento", source = "dtNascimento")
     @Mapping(target = "cnpj", source = "documento")
     public PessoaJuridica toPessoaJuridica(PessoaDto pessoaDto);
-
+    
     public default Pessoa getPessoa(PessoaDto pessoaDto) {
         if (pessoaDto.tipoPessoa().equals(TipoPessoaEnum.FISICA))
             return toPessoaFisica(pessoaDto);
         return toPessoaJuridica(pessoaDto);
     }
+
+    
 }

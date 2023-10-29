@@ -53,6 +53,7 @@ json coleção de saidaProduto
   "nomeProduto":"",
   "qtdProduto":""
 }
+mapstruct: https://reflectoring.io/java-mapping-with-mapstruct/
 
 ### tipos de model
 #### annotations ou migrations

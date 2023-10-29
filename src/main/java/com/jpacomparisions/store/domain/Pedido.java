@@ -30,5 +30,4 @@ public class Pedido {
     @ManyToOne
     @JoinColumn
     private Pessoa pessoa;
-    
 }
