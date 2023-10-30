@@ -13,16 +13,19 @@ import com.jpacomparisions.store.domain.PessoaJuridica;
 
 @Mapper(componentModel = "spring")
 public interface PessoaDtoMapper {
+    @Mapping(target = "add", ignore = true)
     @Mapping(target = "dtNascimento", source = "dataNascimento")
     @Mapping(target = "tipoPessoa", expression = "java(TipoPessoaEnum.FISICA)")
     @Mapping(target = "documento", source = "cpf")
     public PessoaDto fromPessoaFisica(PessoaFisica pessoaFisica);
 
+    @Mapping(target = "add", ignore = true)
     @Mapping(target = "dtNascimento", source = "dataNascimento")
     @Mapping(target = "tipoPessoa", expression = "java(TipoPessoaEnum.JURIDICA)")
     @Mapping(target = "documento", source = "cnpj")
     public PessoaDto fromPessoaJuridica(PessoaJuridica pessoaJuridica);
 
+    @Mapping(target = "add", ignore = true)
     @Mapping(target = "tipoPessoa", ignore = true)
     @Mapping(target = "documento", ignore = true)
     @Mapping(target = "dtNascimento", source = "dataNascimento")
@@ -42,7 +45,7 @@ public interface PessoaDtoMapper {
     public PessoaJuridica toPessoaJuridica(PessoaDto pessoaDto);
     
     public default Pessoa getPessoa(PessoaDto pessoaDto) {
-        if (pessoaDto.tipoPessoa().equals(TipoPessoaEnum.FISICA))
+        if (pessoaDto.getTipoPessoa().equals(TipoPessoaEnum.FISICA))
             return toPessoaFisica(pessoaDto);
         return toPessoaJuridica(pessoaDto);
     }

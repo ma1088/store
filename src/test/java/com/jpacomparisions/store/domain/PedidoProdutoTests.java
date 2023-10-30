@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class PedidoProdutoTests {
+class PedidoProdutoTests {
 
     @Test
     void buildPedidoTest() {
@@ -116,7 +116,7 @@ public class PedidoProdutoTests {
                 .produto(getProduto())
                 .build();
         String pedidoProdutoStr = pedidoProduto.toString();
-        String refString = "PedidoProduto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, pedido=Pedido(id=b9976434-13f0-4159-97f3-7649cad0e572, dataPedido=2023-10-08T01:08, pessoa=PessoaFisica(cpf=222.333.444-55)), produto=Produto(id=ca295fc0-69b9-46c8-a093-f066dd34acb7, descricao=Pizza Margherita, validade=2023-10-11), quantidade=null)";
+        String refString = "PedidoProduto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, pedido=Pedido(id=b9976434-13f0-4159-97f3-7649cad0e572, dataPedido=2023-10-08T01:08, pessoa=PessoaFisica(cpf=222.333.444-55)), produto=Produto(id=ca295fc0-69b9-46c8-a093-f066dd34acb7, descricao=Pizza Margherita, validade=2023-11-01), quantidade=null)";
 
         assertNotNull(pedidoProdutoStr);
         assertEquals(refString, pedidoProdutoStr);
@@ -172,7 +172,7 @@ public class PedidoProdutoTests {
         String refIdStr = "ca295fc0-69b9-46c8-a093-f066dd34acb7";
         return Produto.builder()
                 .id(UUID.fromString(refIdStr))
-                .validade(LocalDate.now().plusDays(3))
+                .validade(LocalDate.of(2023,11,01))
                 .descricao("Pizza Margherita")
                 .build();
     }

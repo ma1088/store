@@ -29,18 +29,18 @@ public interface PedidoDtoMapper {
 
     @Named("mapPessoaDtoToPessoa")
     default Pessoa map(PessoaDto pessoaDto) {
-        if (pessoaDto.tipoPessoa().equals(TipoPessoaEnum.FISICA))
+        if (pessoaDto.getTipoPessoa().equals(TipoPessoaEnum.FISICA))
             return PessoaFisica.builder()
-                    .id(UUID.fromString(pessoaDto.id()))
-                    .nome(pessoaDto.nome())
-                    .dataNascimento(pessoaDto.dtNascimento())
-                    .cpf(pessoaDto.documento())
+                    .id(UUID.fromString(pessoaDto.getId()))
+                    .nome(pessoaDto.getNome())
+                    .dataNascimento(pessoaDto.getDtNascimento())
+                    .cpf(pessoaDto.getDocumento())
                     .build();
         return PessoaJuridica.builder()
-                .id(UUID.fromString(pessoaDto.id()))
-                .nome(pessoaDto.nome())
-                .dataNascimento(pessoaDto.dtNascimento())
-                .cnpj(pessoaDto.documento())
+                .id(UUID.fromString(pessoaDto.getId()))
+                .nome(pessoaDto.getNome())
+                .dataNascimento(pessoaDto.getDtNascimento())
+                .cnpj(pessoaDto.getDocumento())
                 .build();
     }
 

@@ -1,5 +1,5 @@
 # The orders processor!
->>Let's have some pizza
+>Let's have some pizza!
 
 The purpose of this project is to demonstrate good practices on Java development with Spring Boot, Spring Web and Spring Data JPA.
 

@@ -27,7 +27,7 @@ public class PessoaController {
 
   @PostMapping
   public ResponseEntity<PessoaDto> novaPessoa(@RequestBody PessoaDto pessoa) {
-    if (pessoa.tipoPessoa().equals(TipoPessoaEnum.FISICA))
+    if (pessoa.getTipoPessoa().equals(TipoPessoaEnum.FISICA))
       return novaPessoaFisica(pessoa);
     return novaPessoaJuridica(pessoa);
   }
@@ -35,8 +35,8 @@ public class PessoaController {
   @GetMapping
   public ResponseEntity<List<PessoaDto>> getPessoa(@RequestBody PessoaDto exemplo){
     Pessoa exemploPessoa = new Pessoa() {};
-    if (exemplo.tipoPessoa().equals(TipoPessoaEnum.FISICA)) exemploPessoa =mapper.toPessoaFisica(exemplo);
-    if (exemplo.tipoPessoa().equals(TipoPessoaEnum.JURIDICA)) exemploPessoa = mapper.toPessoaJuridica(exemplo);
+    if (exemplo.getTipoPessoa().equals(TipoPessoaEnum.FISICA)) exemploPessoa =mapper.toPessoaFisica(exemplo);
+    if (exemplo.getTipoPessoa().equals(TipoPessoaEnum.JURIDICA)) exemploPessoa = mapper.toPessoaJuridica(exemplo);
     return ResponseEntity.ok().body(mapper.fromPessoa(service.recoverPessoa(exemploPessoa)));
     
   }

@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.jpacomparisions.store.adapters.primary.enums.TipoPessoaEnum;
 
 @ExtendWith(MockitoExtension.class)
-public class PessoaDtoTest {
+class PessoaDtoTest {
     @Test
     void test(){
         String id = UUID.randomUUID().toString();
@@ -29,11 +29,11 @@ public class PessoaDtoTest {
             tipoPessoa, 
             documento);
         assertNotNull(pessoa);
-        assertEquals(id, pessoa.id());
-        assertEquals(nome, pessoa.nome());
-        assertEquals(dtNascimento, pessoa.dtNascimento());
-        assertEquals(tipoPessoa, pessoa.tipoPessoa());
-        assertEquals(documento, pessoa.documento());
+        assertEquals(id, pessoa.getId());
+        assertEquals(nome, pessoa.getNome());
+        assertEquals(dtNascimento, pessoa.getDtNascimento());
+        assertEquals(tipoPessoa, pessoa.getTipoPessoa());
+        assertEquals(documento, pessoa.getDocumento());
         
         
     }

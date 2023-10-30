@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class ProdutoDtoTest {
+class ProdutoDtoTest {
     @Test
     void test(){
         String id = "oi, tudo bem?";
@@ -20,9 +20,9 @@ public class ProdutoDtoTest {
         ProdutoDto produto = new ProdutoDto(id, descricao, validade);
         
         assertNotNull(produto);
-        assertEquals(id, produto.id());
-        assertEquals(descricao, produto.descricao());
-        assertEquals(validade, produto.validade());
+        assertEquals(id, produto.getId());
+        assertEquals(descricao, produto.getDescricao());
+        assertEquals(validade, produto.getValidade());
 
         
     }

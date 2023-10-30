@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jpacomparisions.store.adapters.primary.dto.DefaultResponse;
-import com.jpacomparisions.store.adapters.primary.dto.HateoasResponse;
 import com.jpacomparisions.store.adapters.primary.dto.ProdutoDto;
 import com.jpacomparisions.store.adapters.primary.dto.mappers.ProdutoDtoMapper;
 import com.jpacomparisions.store.application.ProdutoService;
@@ -51,27 +50,17 @@ public class ProdutoController {
 
   @PutMapping(value = "/{id}")
   public ResponseEntity<ProdutoDto> updateProduto(@PathVariable UUID id, @RequestBody ProdutoDto novo) {
-    Produto oNovo = new Produto(id, novo.descricao(), novo.validade());
+    Produto oNovo = new Produto(id, novo.getDescricao(), novo.getValidade());
     return ResponseEntity.ok()
         .body(mapper.fromProduto(service.updateProduto(oNovo)));
   }
 
   @DeleteMapping(value = "/{id}")
   public ResponseEntity<DefaultResponse> deleteProduto(@PathVariable UUID id, @RequestBody ProdutoDto excluir) {
-    service.deleteProduto(new Produto(id, excluir.descricao(), excluir.validade()));
+    service.deleteProduto(new Produto(id, excluir.getDescricao(), excluir.getValidade()));
 
     return ResponseEntity.ok()
         .body(new DefaultResponse(Boolean.TRUE.toString()));
-  }
-
-  @DeleteMapping(value = "/hateoas/{id}")
-  public ResponseEntity<HateoasResponse> deleteProdutoHateoasResponse(@PathVariable UUID id,
-      @RequestBody ProdutoDto excluir) {
-    service.deleteProduto(new Produto(id, excluir.descricao(), excluir.validade()));
-
-    HateoasResponse responseBody = new HateoasResponse(Boolean.TRUE.toString());
-    return ResponseEntity.ok()
-        .body(responseBody);
   }
 
 }
