@@ -2,6 +2,7 @@ package com.jpacomparisions.store.application;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -19,24 +20,40 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-    public List<Produto> recoverProdutos(){
+    public List<Produto> recoverProdutos() {
         return repository.findAll();
     }
 
-    public List<Produto> recoverProdutos(Produto exemplo){
+    public List<Produto> recoverProdutos(Produto exemplo) {
         return repository.findAll(Example.of(exemplo));
     }
 
-    public Produto updateProduto(Produto novoProduto){
-        Produto produto = repository.findById(novoProduto.getId()).orElseThrow(() -> new ProdutoNotFoundException(String.format("Produto não encontrado com ID %s",novoProduto.getId())));
-        produto.setDescricao(Objects.isNull(novoProduto.getDescricao())?produto.getDescricao(): novoProduto.getDescricao());
-        produto.setValidade(Objects.isNull(novoProduto.getValidade())?produto.getValidade() : novoProduto.getValidade());
+    public Produto updateProduto(Produto novoProduto) {
+        Produto produto = repository.findById(novoProduto.getId()).orElseThrow(() -> new ProdutoNotFoundException(
+                String.format("Produto não encontrado com ID %s", novoProduto.getId())));
+        produto.setDescricao(
+                Objects.isNull(novoProduto.getDescricao()) ? produto.getDescricao() : novoProduto.getDescricao());
+        produto.setValidade(
+                Objects.isNull(novoProduto.getValidade()) ? produto.getValidade() : novoProduto.getValidade());
         return repository.save(produto);
     }
 
-    public void deleteProduto(Produto excluirProduto){
-        Produto produto = repository.findById(excluirProduto.getId()).orElseThrow(() -> new ProdutoNotFoundException(String.format("Produto não encontrado com ID %s",excluirProduto.getId())));
-        repository.delete(produto);
+    public void deleteProduto(Produto excluirProduto) {
+        Optional<Produto> produtoOptional = repository.findById(excluirProduto.getId());
+        if (produtoOptional.isPresent()) {
+            repository.delete(produtoOptional.get());
+        } else {
+            Produto produto = Produto.builder()
+                    .descricao(excluirProduto.getDescricao())
+                    .validade(excluirProduto.getValidade())
+                    .build();
+            List<Produto> produtos = repository.findAll(Example.of(produto));
+            if (produtos.isEmpty())
+                throw new ProdutoNotFoundException(
+                        String.format("Produto não encontrado com características %s", excluirProduto));
+            repository.deleteAllInBatch(produtos);
+        }
+
     }
-    
+
 }
