@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.stereotype.Service;
 
 import com.jpacomparisions.store.adapters.secondary.ProdutoRepository;
@@ -16,6 +18,9 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository repository;
 
+    private static final ExampleMatcher descriptionLikeCaseInsentitiveMatcher = ExampleMatcher.matchingAny()
+            .withMatcher("descricao", GenericPropertyMatchers.contains().ignoreCase());
+
     public Produto createProduto(Produto produto) {
         return repository.save(produto);
     }
@@ -25,7 +30,7 @@ public class ProdutoService {
     }
 
     public List<Produto> recoverProdutos(Produto exemplo) {
-        return repository.findAll(Example.of(exemplo));
+        return repository.findAll(Example.of(exemplo, descriptionLikeCaseInsentitiveMatcher));
     }
 
     public Produto updateProduto(Produto novoProduto) {
@@ -47,7 +52,7 @@ public class ProdutoService {
                     .descricao(excluirProduto.getDescricao())
                     .validade(excluirProduto.getValidade())
                     .build();
-            List<Produto> produtos = repository.findAll(Example.of(produto));
+            List<Produto> produtos = repository.findAll(Example.of(produto, descriptionLikeCaseInsentitiveMatcher));
             if (produtos.isEmpty())
                 throw new ProdutoNotFoundException(
                         String.format("Produto não encontrado com características %s", excluirProduto));
