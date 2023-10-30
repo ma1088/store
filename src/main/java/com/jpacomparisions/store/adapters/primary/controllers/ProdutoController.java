@@ -65,11 +65,13 @@ public class ProdutoController {
   }
 
   @DeleteMapping(value = "/hateoas/{id}")
-  public ResponseEntity<HateoasResponse> deleteProdutoHateoasResponse(@PathVariable UUID id, @RequestBody ProdutoDto excluir) {
+  public ResponseEntity<HateoasResponse> deleteProdutoHateoasResponse(@PathVariable UUID id,
+      @RequestBody ProdutoDto excluir) {
     service.deleteProduto(new Produto(id, excluir.descricao(), excluir.validade()));
 
+    HateoasResponse responseBody = new HateoasResponse(Boolean.TRUE.toString());
     return ResponseEntity.ok()
-        .body(new HateoasResponse(Boolean.TRUE.toString()));
+        .body(responseBody);
   }
 
 }
