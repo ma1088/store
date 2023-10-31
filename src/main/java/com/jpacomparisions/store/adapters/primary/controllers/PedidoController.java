@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jpacomparisions.store.adapters.primary.dto.PedidoDto;
 import com.jpacomparisions.store.adapters.primary.dto.mappers.PedidoDtoMapper;
 import com.jpacomparisions.store.application.PedidoService;
-import com.jpacomparisions.store.domain.Pedido;
+import com.jpacomparisions.store.domain.entities.Pedido;
 
 @RestController
 @RequestMapping("/pedido")

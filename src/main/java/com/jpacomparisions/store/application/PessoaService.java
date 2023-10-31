@@ -7,9 +7,9 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.jpacomparisions.store.adapters.secondary.PessoaRepository;
-import com.jpacomparisions.store.domain.Pessoa;
-import com.jpacomparisions.store.domain.PessoaFisica;
-import com.jpacomparisions.store.domain.PessoaJuridica;
+import com.jpacomparisions.store.domain.entities.Pessoa;
+import com.jpacomparisions.store.domain.entities.PessoaFisica;
+import com.jpacomparisions.store.domain.entities.PessoaJuridica;
 
 @Service
 public class PessoaService {

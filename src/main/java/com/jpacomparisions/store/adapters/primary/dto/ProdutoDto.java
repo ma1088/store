@@ -15,4 +15,5 @@ public class ProdutoDto extends RepresentationModel<ProdutoDto> {
     String id;
     String descricao;
     LocalDate validade;
+    TipoProdutoDto tipoProduto;
 }

@@ -21,7 +21,7 @@ import com.jpacomparisions.store.adapters.primary.dto.PessoaDto;
 import com.jpacomparisions.store.adapters.primary.dto.mappers.PessoaDtoMapper;
 import com.jpacomparisions.store.adapters.primary.enums.TipoPessoaEnum;
 import com.jpacomparisions.store.application.PessoaService;
-import com.jpacomparisions.store.domain.Pessoa;
+import com.jpacomparisions.store.domain.entities.Pessoa;
 
 @RestController
 @RequestMapping("/pessoa")

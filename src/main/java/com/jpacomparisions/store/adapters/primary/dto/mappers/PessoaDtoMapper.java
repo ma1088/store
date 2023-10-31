@@ -7,9 +7,9 @@ import org.mapstruct.Mapping;
 
 import com.jpacomparisions.store.adapters.primary.dto.PessoaDto;
 import com.jpacomparisions.store.adapters.primary.enums.TipoPessoaEnum;
-import com.jpacomparisions.store.domain.Pessoa;
-import com.jpacomparisions.store.domain.PessoaFisica;
-import com.jpacomparisions.store.domain.PessoaJuridica;
+import com.jpacomparisions.store.domain.entities.Pessoa;
+import com.jpacomparisions.store.domain.entities.PessoaFisica;
+import com.jpacomparisions.store.domain.entities.PessoaJuridica;
 
 @Mapper(componentModel = "spring")
 public interface PessoaDtoMapper {

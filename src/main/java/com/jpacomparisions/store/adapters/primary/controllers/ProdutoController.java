@@ -24,7 +24,7 @@ import com.jpacomparisions.store.adapters.primary.dto.DefaultResponse;
 import com.jpacomparisions.store.adapters.primary.dto.ProdutoDto;
 import com.jpacomparisions.store.adapters.primary.dto.mappers.ProdutoDtoMapper;
 import com.jpacomparisions.store.application.ProdutoService;
-import com.jpacomparisions.store.domain.Produto;
+import com.jpacomparisions.store.domain.entities.Produto;
 
 @RestController
 @RequestMapping("/produto")
@@ -57,14 +57,17 @@ public class ProdutoController {
 
   @PutMapping(value = "/{id}")
   public ResponseEntity<ProdutoDto> updateProduto(@PathVariable UUID id, @RequestBody ProdutoDto novo) {
-    Produto oNovo = new Produto(id, novo.getDescricao(), novo.getValidade());
+    Produto oNovo = mapper.toProduto(novo);
     return ResponseEntity.ok()
         .body(mapper.fromProduto(service.updateProduto(oNovo)));
   }
 
   @DeleteMapping(value = "/{id}")
   public ResponseEntity<DefaultResponse> deleteProduto(@PathVariable UUID id, @RequestBody ProdutoDto excluir) {
-    service.deleteProduto(new Produto(id, excluir.getDescricao(), excluir.getValidade()));
+    Produto produto = mapper.toProduto(excluir);
+    produto.setId(id);
+    
+    service.deleteProduto(produto);
 
     return ResponseEntity.ok()
         .body(new DefaultResponse(Boolean.TRUE.toString()));

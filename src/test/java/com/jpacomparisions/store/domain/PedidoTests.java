@@ -14,6 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.jpacomparisions.store.domain.entities.Pedido;
+import com.jpacomparisions.store.domain.entities.Pessoa;
+import com.jpacomparisions.store.domain.entities.PessoaFisica;
+
 @ExtendWith(MockitoExtension.class)
 public class PedidoTests {
 

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.jpacomparisions.store.adapters.secondary.PedidoRepository;
-import com.jpacomparisions.store.domain.Pedido;
+import com.jpacomparisions.store.domain.entities.Pedido;
 
 @Service
 public class PedidoService {

@@ -1,4 +1,4 @@
-package com.jpacomparisions.store.domain;
+package com.jpacomparisions.store.domain.entities;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,18 +13,18 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@DiscriminatorValue("JURIDICA")
-@AllArgsConstructor
+@DiscriminatorValue("FISICA")
+@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor 
 @NoArgsConstructor
 @SuperBuilder
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class PessoaJuridica extends Pessoa {
-    public PessoaJuridica(UUID id, String nome, LocalDate dataNascimento, String cnpj) {
+public class PessoaFisica extends Pessoa{
+    public PessoaFisica(UUID id, String nome, LocalDate dataNascimento, String cpf) {
         super(id, nome, dataNascimento);
-        setCnpj(cnpj);
+        setCpf(cpf);
     }
 
     @Column
-    private String cnpj;
+    private String cpf;
 }

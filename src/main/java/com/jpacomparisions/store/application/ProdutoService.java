@@ -10,7 +10,7 @@ import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
 import org.springframework.stereotype.Service;
 
 import com.jpacomparisions.store.adapters.secondary.ProdutoRepository;
-import com.jpacomparisions.store.domain.Produto;
+import com.jpacomparisions.store.domain.entities.Produto;
 
 @Service
 public class ProdutoService {

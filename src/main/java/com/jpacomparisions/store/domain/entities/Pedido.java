@@ -1,4 +1,4 @@
-package com.jpacomparisions.store.domain;
+package com.jpacomparisions.store.domain.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
