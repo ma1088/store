@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,6 +18,7 @@ import com.jpacomparisions.store.domain.entities.PedidoProduto;
 import com.jpacomparisions.store.domain.entities.Pessoa;
 import com.jpacomparisions.store.domain.entities.PessoaFisica;
 import com.jpacomparisions.store.domain.entities.Produto;
+import com.jpacomparisions.store.domain.settings.TipoProduto;
 
 @ExtendWith(MockitoExtension.class)
 class PedidoProdutoTests {
@@ -98,6 +98,7 @@ class PedidoProdutoTests {
         String ref = UUID.randomUUID().toString();
         UUID id1 = UUID.fromString(ref);
         UUID id2 = UUID.fromString(ref);
+
         PedidoProduto pedidoProduto1 = PedidoProduto.builder()
                 .id(id1)
                 .pedido(getPedido())
@@ -111,7 +112,7 @@ class PedidoProdutoTests {
                 .quantidade(8)
                 .build();
 
-        assertTrue(pedidoProduto1.canEqual(pedidoProduto2));
+        assertEquals(pedidoProduto1.toString(), pedidoProduto2.toString());
     }
 
     @Test
@@ -120,9 +121,10 @@ class PedidoProdutoTests {
                 .id(UUID.fromString("c09694a9-02c6-46e6-9aaa-2daa48cd6324"))
                 .pedido(getPedido())
                 .produto(getProduto())
+                .quantidade(9)
                 .build();
         String pedidoProdutoStr = pedidoProduto.toString();
-        String refString = "PedidoProduto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, pedido=Pedido(id=b9976434-13f0-4159-97f3-7649cad0e572, dataPedido=2023-10-08T01:08, pessoa=PessoaFisica(cpf=222.333.444-55)), produto=Produto(id=ca295fc0-69b9-46c8-a093-f066dd34acb7, descricao=Pizza Margherita, validade=2023-11-01), quantidade=null)";
+        String refString = "PedidoProduto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, pedido=Pedido(id=b9976434-13f0-4159-97f3-7649cad0e572, dataPedido=2023-10-08T01:08, pessoa=PessoaFisica(cpf=222.333.444-55)), produto=Produto(id=ca295fc0-69b9-46c8-a093-f066dd34acb7, descricao=Pizza Margherita, validade=2023-11-01, tipoProduto=TipoProduto(id=1, nome=Pizza, descricao=Massa moldada em forma de disco com recheio em cima. Pode ser doce ou salgada.)), quantidade=9)";
 
         assertNotNull(pedidoProdutoStr);
         assertEquals(refString, pedidoProdutoStr);
@@ -176,10 +178,15 @@ class PedidoProdutoTests {
 
     private Produto getProduto() {
         String refIdStr = "ca295fc0-69b9-46c8-a093-f066dd34acb7";
+
+        TipoProduto tipoProduto = new TipoProduto(1L,
+                "Pizza",
+                "Massa moldada em forma de disco com recheio em cima. Pode ser doce ou salgada.");
         return Produto.builder()
                 .id(UUID.fromString(refIdStr))
-                .validade(LocalDate.of(2023,11,01))
+                .validade(LocalDate.of(2023, 11, 01))
                 .descricao("Pizza Margherita")
+                .tipoProduto(tipoProduto)
                 .build();
     }
 

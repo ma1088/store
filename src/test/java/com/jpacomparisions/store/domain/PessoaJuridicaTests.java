@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -16,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.jpacomparisions.store.domain.entities.PessoaJuridica;
 
 @ExtendWith(MockitoExtension.class)
-public class PessoaJuridicaTests {
+class PessoaJuridicaTests {
 
     @Test
     void buildPessoaJuridicaTest() {
@@ -116,7 +115,7 @@ public class PessoaJuridicaTests {
                 .cnpj("222.333.444-55")
                 .build();
 
-        assertTrue(pessoa1.canEqual(pessoa2));
+        assertEquals(pessoa1,pessoa2);
     }
 
     @Test

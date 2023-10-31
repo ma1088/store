@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +18,7 @@ import com.jpacomparisions.store.domain.entities.Pessoa;
 import com.jpacomparisions.store.domain.entities.PessoaFisica;
 
 @ExtendWith(MockitoExtension.class)
-public class PedidoTests {
+class PedidoTests {
 
     @Test
     void buildPedidoTest() {
@@ -98,7 +97,7 @@ public class PedidoTests {
                 .dataPedido(LocalDateTime.now())
                 .build();
 
-        assertTrue(pedido1.canEqual(pedido2));
+        assertEquals(pedido1.toString(),pedido2.toString());
     }
 
     @Test

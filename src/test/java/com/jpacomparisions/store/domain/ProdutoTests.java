@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -14,9 +13,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.jpacomparisions.store.domain.entities.Produto;
+import com.jpacomparisions.store.domain.settings.TipoProduto;
 
 @ExtendWith(MockitoExtension.class)
-public class ProdutoTests {
+class ProdutoTests {
 
     @Test
     void buildProdutoTest() {
@@ -41,13 +41,17 @@ public class ProdutoTests {
         UUID id = UUID.randomUUID();
         LocalDate validade = LocalDate.now().plusDays(3);
         String descricao = "Pizza Margherita";
+        TipoProduto tipoProduto = new TipoProduto(1L, 
+                "Pizza", 
+                "Massa moldada em forma de disco com recheio em cima. Pode ser doce ou salgada.");
 
-        Produto produto = new Produto(id, descricao, validade);
+        Produto produto = new Produto(id, descricao, validade, tipoProduto);
 
         assertNotNull(produto);
         assertEquals(id, produto.getId());
         assertEquals(validade, produto.getValidade());
         assertEquals(descricao, produto.getDescricao());
+        assertEquals(tipoProduto, produto.getTipoProduto());
     }
 
     @Test
@@ -95,7 +99,7 @@ public class ProdutoTests {
                 .validade(LocalDate.now().plusDays(3))
                 .build();
 
-        assertTrue(produto1.canEqual(produto2));
+        assertEquals(produto1,produto2);
     }
 
     @Test
@@ -106,7 +110,7 @@ public class ProdutoTests {
                 .validade(LocalDate.of(2023,10,11))
                 .build();
         String produtoStr = produto.toString();
-        String refString = "Produto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, descricao=Pizza Margherita, validade=2023-10-11)";
+        String refString = "Produto(id=c09694a9-02c6-46e6-9aaa-2daa48cd6324, descricao=Pizza Margherita, validade=2023-10-11, tipoProduto=null)";
 
         assertNotNull(produtoStr);
         assertEquals(refString, produtoStr);
