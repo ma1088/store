@@ -58,13 +58,16 @@ json coleção de saidaProduto
 
 ### tipos de model
 #### annotations
-- o Hibernate atualiza o banco de dados ao subir a aplicação sem, no entanto, recriar objetos
-- o versionamento dos objetos de banco de dados fica na própria aplicação
+- O Hibernate atualiza o banco de dados ao subir a aplicação sem, no entanto, recriar objetos. Este é o comportamento padrão, mas pode ser desativado caso o banco de dados seja versionado em pipeline própria.
+- O versionamento dos objetos de banco de dados fica na própria aplicação.
+- Até o commit 
 #### migrations
-- podem ser usadas para preencher dados mestres ou para versionar objetos de banco de dados
+- Podem ser usadas para preencher dados mestres ou para versionar objetos de banco de dados
 - https://flywaydb.org/
-  - ferramenta para versionamento de banco de dados na própria aplicação
-  - requer que os scripts de banco de dados estejam na aplicação, em um local comum, como um diretório compartilhado ou storage na nuvem
+  - Ferramenta para versionamento de banco de dados na própria aplicação
+  - Requer que os scripts de banco de dados estejam na aplicação ou então em um local acessível pela aplicação, como um diretório compartilhado ou storage na nuvem
+  - Ao incluir a biblioteca flyway-core (https://mvnrepository.com/artifact/org.flywaydb/flyway-core), o Flyway desativa a execução de DDL pelo Hibernate. Portanto, todo DDL deve ser executado em pipeline própria ou pelo próprio Flyway ao iniciar a aplicação.
+
 ### tipos de repository
 #### Consulta Nativa
 #### Criteria API
